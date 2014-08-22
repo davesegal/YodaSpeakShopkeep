@@ -43,7 +43,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+// send request to request manager
 -(void)sendRequest:(NSString *)inputMessage
 {
     if (inputMessage.length > 0)
@@ -75,7 +75,7 @@
     [self sendRequest:self.inputTextView.text];
 }
 
-
+// Block activity during requests
 -(void)blockActivity
 {
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -85,6 +85,7 @@
     [self.activityIndicator startAnimating];
 }
 
+// Unblock activity upon request complete
 -(void)unblockActivity
 {
     [[UIApplication sharedApplication] endIgnoringInteractionEvents];

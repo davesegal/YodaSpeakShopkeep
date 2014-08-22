@@ -5,6 +5,8 @@
 //  Created by David Segal on 8/21/14.
 //  Copyright (c) 2014 dsegal. All rights reserved.
 //
+//  Class to handle all api requests
+//
 
 #import "YSSRequestManager.h"
 #import "AFHTTPRequestOperationManager.h"
@@ -26,7 +28,7 @@
     return sharedMyInstance;
 }
 
-
+// Translate yoda speak
 -(void)getTranslationToYoda:(NSString *)message success:(void (^)(YSSTranslatedTextModel *))success failure:(void (^)(NSError *))failure
 {
     NSLog(@"request : %@", message);

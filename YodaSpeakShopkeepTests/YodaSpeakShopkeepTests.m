@@ -19,6 +19,8 @@
 - (void)setUp
 {
     [super setUp];
+    
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -28,13 +30,13 @@
     [super tearDown];
 }
 
+// test requests to yoda api
 - (void)testYodaRequest
 {
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
     BOOL __block wait = YES;
     
-    [[YSSRequestManager sharedInstance] getTranslationToYoda:@"Once upon a midnight dreary. While I pondered weak and weary. Over many a quaint and curious volume of forgotten lore." success:^(YSSTranslatedTextModel *translatedModel) {
+    [[YSSRequestManager sharedInstance] getTranslationToYoda:@"Once upon a midnight dreary. While I pondered weak and weary. Over many a quaint and curious volume of forgotten lore. While I nodded nearly napping." success:^(YSSTranslatedTextModel *translatedModel) {
         wait = NO;
         XCTAssertTrue(translatedModel.translatedText.length > 0, @"tranlated text empty");
     } failure:^(NSError *error) {
@@ -48,6 +50,8 @@
     }
 }
 
+
+// test caching of repeat requests
 - (void)testYodaUrlCaching
 {
     BOOL __block wait = YES;
